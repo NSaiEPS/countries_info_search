@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import { useState } from 'react';
 
 function App() {
+  let [input,setinput]=useState('')
+
+  let handlegetapi=(e)=>{
+     e.preventDefault()
+    //  axios.get(`https://api-ninjas.com/api/country?name=${input}`,headers={ 'X-Api-Key': 'YOUR_API_KEY'}).then((data)=>{
+     axios.get(`https://apis.ccbp.in/countries-data`).then((data)=>{
+      console.log(data)
+    }).catch((e)=>console.error(e))
+  }
+ 
+
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   <input placeholder='type the countrys name'   onChange={(e)=>{setinput(e.target.value)
+
+   }}/>
+   <button onClick={handlegetapi
+    }>Submit</button>
     </div>
   );
 }
